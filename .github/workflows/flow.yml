@@ -2,7 +2,7 @@ name: Faust Compilation on Push
 
 on:
   push:
-    branches: [ master ]  # You can specify branches to monitor (replace with your branch names)
+    branches: [ main ]  # You can specify branches to monitor (replace with your branch names)
 
 jobs:
   compile:
