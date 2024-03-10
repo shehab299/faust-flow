@@ -1,0 +1,26 @@
+name: Faust Compilation on Push
+
+on:
+  push:
+    branches: [ master ]  # You can specify branches to monitor (replace with your branch names)
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Faust code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies (assuming script exists)
+        run: |
+          bash sudo make install  
+        if: failure()  # Only run if previous step failed
+
+      - name: Compile Faust code
+        run: faust main.dsp 
+        if: success()  # Only run if previous step succeeded
+
+      - name: Fail workflow on compilation failure
+        run: exit 1  
+        if: failure()
